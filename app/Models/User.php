@@ -10,13 +10,14 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laratrust\Traits\LaratrustUserTrait;
+use Laratrust\Contracts\LaratrustUser;
+use Laratrust\Traits\HasRolesAndPermissions;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements LaratrustUser
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use LaratrustUserTrait;
-
+    use HasRolesAndPermissions;
     /**
      * The attributes that are mass assignable.
      *
@@ -66,6 +67,11 @@ class User extends Authenticatable
     public function visits(): HasMany
     {
         return $this->hasMany(Visit::class);
+    }
+
+    public function medications(): HasMany
+    {
+        return $this->hasMany(Medication::class);
     }
 
 }

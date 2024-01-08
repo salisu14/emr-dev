@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->datetime('appointment_date');
+            $table->datetime('scheduled_at');
             $table->string('reason');
-            $table->enum('status', ['scheduled', 'completed']);
+            $table->enum('status', ['scheduled', 'completed', 'cancelled', 'rescheduled']);
             $table->foreignId('patient_id')->constrained();
             $table->foreignId('physician_id')->constrained();
             $table->timestamps();

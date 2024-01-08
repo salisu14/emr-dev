@@ -1,66 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EMR - Electronic Medical Record
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Requirements
 
-## About Laravel
+Make sure your server meets the following requirements.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   Apache 2.2+ or nginx
+-   MySQL Server 5.7.8+ , Mariadb 10.3.2+ or PostgreSQL
+-   Composer installed 2.0+
+-   PHP Version 8.0.x+
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### PHP extensions
 
-## Learning Laravel
+The following php extensions must be enabled for the application to work
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+bz2, curl, date, dom, exif, gd, gettext, grpc,
+imagick, intl, json, libxml, mbstring, mysqli, mysqlnd, openssl, pcntl, PDO,
+pdo_mysql, posix, protobuf, redis, soap, sqlite3, xml, xmlreader, xmlwriter
+xsl, zip, zlib
+```
+For more information enabaling these extension, please visit [here](https://www.php.net/manual/en/install.pecl.windows.php)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Install composer with the help of the instructions given [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 
-## Laravel Sponsors
+```bash
+$ wget https://getcomposer.org/composer.phar
+$ chmod +x composer.phar
+$ mv composer.phar /usr/local/bin/composer
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Install Node.js/NPM with the help of the instructions given [here](https://nodejs.org/en/download/package-manager/)
 
-### Premium Partners
+Linux/Unix `yum install npm` OR using MacOs `brew install node`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Fork and/or clone this project by running the following command
 
-## Contributing
+```bash
+$ git clone https://github.com/ibrahimsafiyan/emr-dev.git
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Navigate into the project's directory
 
-## Code of Conduct
+```bash
+$ cd emr-dev
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copy .env.example for .env and modify according to your credentials
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Run this command to install dependencies
 
-## License
+```bash
+composer install --prefer-dist
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This command will install all dependencies needed to run the EMR successfully!
+
+Generate application key
+
+```bash
+php artisan key:generate
+```
+
+Install npm/yarn dependencies (Preference is using **Yarn**)
+
+```bash
+npm install or yarn install
+```
+
+This command will help migrate the database and populate the database!
+
+```bash
+php artisan migrate --seed
+```
+
+Or if for any reason, you wish to reset the database later, you can run
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+## Usage
+
+Run yarn/npm in dev mode
+`npm run dev` OR `yarn run dev`
+
+For live building of components while developing, you can run
+
+`npm run watch` OR `npm run watch-poll`
+
+Run the default laravel server
+
+```bash
+php artisan serve
+```
+
+To view the EMR Application, open the following link in your browser:
+
+```php
+http://localhost:8000/
+```
+
+If you want to serve to another port for example (3000), Run the following
+
+```bash
+php artisan serve --host=<your_ip_address> --port=3000
+```
+
+Then view it on the browser by typing `http://<your_ip_address>:3000`
+
+## Database design
+
+- Patients:
+* PatientID (PK): INT
+* Name: VARCHAR(255)
+* DateOfBirth: DATE
+* Gender: VARCHAR(10)
+* Address: VARCHAR(255)
+* PhoneNumber: VARCHAR(15)
+* InsuranceInformation: TEXT
+* EmergencyContactInformation: TEXT
+
+- Providers:
+* ProviderID (PK): INT
+* Name: VARCHAR(255)
+* Specialty: VARCHAR(255)
+* Credentials: VARCHAR(255)
+* ContactInformation: VARCHAR(255)
+
+- Appointments:
+* AppointmentID (PK): INT
+* PatientID (FK): INT
+* ProviderID (FK): INT
+* Date: DATE
+* Time: TIME
+* ReasonForVisit: TEXT
+* Status: VARCHAR(20)
+
+- MedicalHistory:
+* MedicalHistoryID (PK): INT
+* PatientID (FK): INT
+* PastIllnesses: TEXT
+* Surgeries: TEXT
+* Medications: TEXT
+* Allergies: TEXT
+* Immunizations: TEXT
+
+- LabResults:
+* LabResultID (PK): INT
+* PatientID (FK): INT
+* TestName: VARCHAR(255)
+* DateOrdered: DATE
+* DateResultReceived: DATE
+* ResultValue: VARCHAR(50)
+* ReferenceRange: VARCHAR(50)
+
+- Medications:
+* MedicationID (PK): INT
+* Name: VARCHAR(255)
+* Dosage: VARCHAR(50)
+* Frequency: VARCHAR(50)
+* Instructions: TEXT
+
+- Prescriptions:
+* PrescriptionID (PK): INT
+* PatientID (FK): INT
+* MedicationID (FK): INT
+* ProviderID (FK): INT
+* DatePrescribed: DATE
+* Quantity: INT
+* Refills: INT
+
+- Notes:
+* NoteID (PK): INT
+* PatientID (FK): INT
+* Date: DATE
+* Author (Provider): VARCHAR(255)
+* TypeOfNote: VARCHAR(50)
+* Content: TEXT

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePhysicianRequest;
 use App\Http\Requests\UpdatePhysicianRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\Physician;
 use App\Models\Specialization;
+use App\Models\User;
 
 class PhysicianController extends Controller
 {

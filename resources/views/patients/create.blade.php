@@ -26,6 +26,13 @@
                             <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                         </div>
 
+                        <!-- Email Address -->
+                        <div class="mt-4">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        </div>
+
                         <!-- Date of birth -->
                         <div class="mt-4">
                             <x-input-label for="dob" :value="__('Date of birth')" />

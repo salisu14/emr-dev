@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use Illuminate\Support\Facades\DB;
 use App\Models\Patient;
+use App\Models\User;
 
 class PatientController extends Controller
 {
@@ -31,11 +33,22 @@ class PatientController extends Controller
      */
     public function store(StorePatientRequest $request)
     {
-        $validated = $request->validated();
-        
-        $validated['user_id'] = auth()->id();
+        DB::transaction(function() use($request) {
 
-        Patient::create($validated);
+            $validated = $request->validated();
+
+            $name = $request->input('first_name') . ' ' . $request->input('last_name');
+
+            $user = User::create([
+                'name' => $name,
+                'email' => $request->input('email'),
+                'password' => bcrypt('password')
+            ]);
+
+            $validated['user_id'] = $user->id;
+
+            Patient::create($validated);
+        });
 
         return redirect()->route('patients.index')->with('success', 'Patient added successfully!');
     }

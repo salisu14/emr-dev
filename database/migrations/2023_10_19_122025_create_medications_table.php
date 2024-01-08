@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('dosage');
+            $table->string('frequency');
+            $table->text('instructions');
             $table->foreignIdFor(App\Models\User::class)->constrained()
                                         ->onUpdate('cascade')
                                         ->onDelete('cascade');

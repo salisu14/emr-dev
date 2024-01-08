@@ -46,7 +46,9 @@ class MedicationController extends Controller
     {
         // $medication->load('prescriptions');
 
-        // return view('medications.show', \compact('medication'));
+        // dd($medication);
+
+        return view('medications.show', \compact('medication'));
     }
 
     /**

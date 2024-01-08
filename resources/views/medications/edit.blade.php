@@ -25,10 +25,32 @@
 							/>
 						</div>
 
-						<!-- Description -->
+						<!-- Dosage -->
 						<div class="mb-4">
-							<label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-							<textarea id="description" name="description" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $medication->description }}</textarea>
+							<x-label for="dosage" :value="__('Dosage')"/>
+							<x-input type="text"
+								name="dosage"
+								id="dosage"
+								value="{{ $medication->dosage }}"
+								required
+							/>
+						</div>
+
+						<!-- Frequency -->
+						<div class="mb-4">
+							<x-label for="frequency" :value="__('Frequency')"/>
+							<x-input type="text"
+								name="frequency"
+								id="frequency"
+								value="{{ $medication->frequency }}"
+								required
+							/>
+						</div>
+
+						<!-- Instruction -->
+						<div class="mb-4">
+							<label for="instructions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instructions</label>
+							<textarea id="instructions" name="instructions" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $medication->instructions }}</textarea>
 						</div>
 
 						<div class="flex flex-col items-end mt-4">
